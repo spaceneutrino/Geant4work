@@ -50,6 +50,7 @@ G4bool TrackerSD::ProcessHits(G4Step* aStep,
   TrackerHit* newHit = new TrackerHit();
 
   newHit->SetTrackID  (aStep->GetTrack()->GetTrackID());
+  G4ThreeVector test1=aStep->GetTrack()->GetVertexPosition();
 //  newHit->SetChamberNb(aStep->GetPreStepPoint()->GetTouchableHandle()
 //                                               ->GetCopyNumber());
 //  newHit->SetChamberNb(aStep->GetPreStepPoint()->GetTouchable()->GetVolume()
@@ -67,7 +68,7 @@ G4bool TrackerSD::ProcessHits(G4Step* aStep,
 
   newHit->Print();
   
-  G4cout << "OOOOOOOOOOOOOOOOOOOOOOOOOOO" << point1 << G4endl;
+  G4cout << "OOOOOOOOOOOOOOOOOOOOOOOOOOO" << point1 << test1 << G4endl;
 
   return true;
 

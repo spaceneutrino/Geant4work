@@ -32,13 +32,19 @@ void PrimaryGenerator::GeneratePrimaryVertex(G4Event* event)
   //
   G4ThreeVector position = G4ThreeVector(0.0,0.0,0.0);
   G4double ptime = 0*s;
+  G4double steptime = 76*ns;
+  
+   for (G4int icollnum = 0; icollnum < 2; icollnum++){
+  G4double ptime = steptime*icollnum;
   G4PrimaryVertex* vertex = new G4PrimaryVertex(position, ptime);
   
   G4ParticleDefinition* particleDefinition
            = G4ParticleTable::GetParticleTable()->FindParticle("proton");
         ///  = G4ParticleTable::GetParticleTable()->FindParticle("e-");
            
-  //for (G4int i = 0; i < 1; i++){
+  G4int iptclnum = 5;
+           
+  for (G4int iptcl = 0; iptcl < iptclnum; iptcl++){
   G4PrimaryParticle* p = new G4PrimaryParticle(particleDefinition);
  
   
@@ -55,12 +61,14 @@ void PrimaryGenerator::GeneratePrimaryVertex(G4Event* event)
   //p->SetKineticEnergy(1*GeV);
   p->SetKineticEnergy(0.1*GeV);
   
+  
   vertex->SetPrimary(p);
- // }
-  event->AddPrimaryVertex(vertex);
-  
-  
-  //G4cout<< "000000000000000000000000000000000.\n" << "px = "<< px << "\n py = "<< py << "\n pz = "<< pz <<"  000000000000000000000000000000000.\n"<<G4endl;
-  
-  
+
   }
+    G4double num = vertex->GetT0();
+  G4cout<< "FFFFUUUUUCCCCCKKKKKK   "<<num<<G4endl;
+  event->AddPrimaryVertex(vertex);
+  }
+  }
+  //G4cout<< "000000000000000000000000000000000.\n" << "px = "<< px << "\n py = "<< py << "\n pz = "<< pz <<"  000000000000000000000000000000000.\n"<<G4endl;
+ 
